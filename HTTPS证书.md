@@ -1,23 +1,21 @@
 ### Java keytool工具，生成HTTPS证书
 
-For example:
+创建一个证书的例子
 
-```sh
 keytool -genkey -alias keyname -keyalg RSA -keystore c:\.keystore -dname "CN=localhost, OU=localhost, O=localhost, L=SH, ST=SH, C=CN" -keypass 123456 -storepass -validity 180
 
-* -genkey
+* -genkey 创建新密钥
 
-* -alias
+* -alias 密钥的别名
 
-* -keyalg
+* -keyalg 加密的算法
 
-* -keystore
+* -keystore 密钥库名称
 
-* -dname
+* -dname 密钥的 Distinguished Names
 
-* -keypass
+* -keypass 私有密钥的密码
 
-* -storepass 
+* -storepass 存取密码
 
-* -validity
-``` 
+* -validity 密钥的有效期
