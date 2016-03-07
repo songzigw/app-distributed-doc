@@ -2,7 +2,7 @@
 
 ### 创建一个证书的例子
 
-keytool -genkey -alias keyname -keyalg RSA -keystore c:\.keystore -dname "CN=localhost, OU=localhost, O=localhost, L=SH, ST=SH, C=CN" -keypass 123456 -storepass -validity 180
+keytool -genkey -alias keyname -keyalg RSA -keystore c:\\.keystore -dname "CN=localhost, OU=localhost, O=localhost, L=SH, ST=SH, C=CN" -keypass 123456 -storepass -validity 180
 
 * -genkey 创建新密钥
 
