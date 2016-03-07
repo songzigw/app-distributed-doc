@@ -1,6 +1,6 @@
-### Java keytool生成HTTPS证书
+## Java keytool生成HTTPS证书
 
-- 创建一个证书的例子
+### 创建一个证书的例子
 
 keytool -genkey -alias keyname -keyalg RSA -keystore c:\.keystore -dname "CN=localhost, OU=localhost, O=localhost, L=SH, ST=SH, C=CN" -keypass 123456 -storepass -validity 180
 
