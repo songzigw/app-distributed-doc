@@ -54,7 +54,7 @@ SELECT ID, NAME FROM A WHERE　NOT EXIST (SELECT * FROM B WHERE A.ID = B.AID)
 执行结果为
 3  A3
 
-### exists 和 in
+### EXISTS 和 IN 意思相同
 
 EXISTS 和 IN，意思相同不过语法上有点点区别，好像使用IN效率要差点，应该是不会执行索引的原因
 SELECT ID, NAME FROM A WHERE ID IN (SELECT AID FROM B)
