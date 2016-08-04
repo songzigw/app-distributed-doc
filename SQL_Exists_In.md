@@ -34,8 +34,7 @@ ID    AID    NAME
 
 表A和表B是1对多的关系 A.ID => B.AID
 
-先看EXISTS
-----------
+1）先看EXISTS
 SELECT ID, NAME FROM A WHERE EXISTS (SELECT * FROM B WHERE A.ID = B.AID)
 执行结果为
 1  A1
@@ -50,8 +49,7 @@ SELECT ID, NAME FROM A WHERE EXISTS (SELECT * FROM B WHERE B.AID=2)
 SELECT ID, NAME FROM A WHERE EXISTS (SELECT * FROM B WHERE B.AID=3)
 --->SELECT * FROM B WHERE B.AID=３无值返回真所以没有数据
 
-NOT EXISTS和上面的sql正好是反过来的
----------
+2）NOT EXISTS和上面的sql正好是反过来的
 SELECT ID, NAME FROM A WHERE　NOT EXIST (SELECT * FROM B WHERE A.ID = B.AID)
 执行结果为
 3  A3
@@ -64,7 +62,9 @@ SELECT ID, NAME FROM A WHERE ID IN (SELECT AID FROM B)
 NOT EXISTS 和 NOT IN，意思相同不过语法上有点点区别
 SELECT ID, NAME FROM A WHERE ID NOT IN (SELECT AID FROM B)
 
-## 有时候我们会遇到要选出某一列不重复，某一列作为选择条件，其他列正常输出的情况
+## 其它例子
+
+有时候我们会遇到要选出某一列不重复，某一列作为选择条件，其他列正常输出的情况
 
 如下面的表table
 ```
@@ -76,7 +76,7 @@ Id   Name    Class   Count  Date
  2   青菜    蔬菜    19     2011-7-2
  ```
 
-如果想要得到下面的结果：（Id唯一,Date选最近的一次）
+如果想要得到下面的结果：（Id唯一，Date选最近的一次）
 ```
 1    香蕉    水果    15     2011-7-3
 2    青菜    蔬菜    19     2011-7-2
