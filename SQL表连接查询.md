@@ -19,8 +19,7 @@ FROM 表名 join_type 表名 [ON (连接条件)]
 一个表自己与自己建立连接称为自连接或自身连接。
 进行自连接就如同两个分开的表一样，可以把一个表的某一行与同一表中的另一行连接起来。
 例：
-查询选学“101”课程的成绩高于“9505201”号学生成绩的所有学生记录，
-并按成绩从高到低排列。
+查询选学“101”课程的成绩高于“9505201”号学生成绩的所有学生记录，并按成绩从高到低排列。
 select x.* from sclass x,sclass y
 where x.cno=''101'' and x.degree>y.degree and y.sno=''9505201'' and y.cno=''101''
 order by x.degree desc
@@ -42,7 +41,7 @@ ON a.city=p.city
 一种是：SELECT e.employeeid,e.employeename,d.deptname FROM EmployeeTB AS e,DeptTB AS d WHERE e.deptid=d.deptid 
 另外一个是：SELECT e.employeeid,e.employeename,d.deptname FROM EmployeeTB AS e INNER JOIN DeptTB AS d ON e.deptid=d.deptid 
 
-3、自然连接：
+2、自然连接：
 在等值连接中消除重复列就是自然连接。（state,city在两个表中都存在）
 
 SELECT a.*,p.pub_id,p.pub_name,p.country 
