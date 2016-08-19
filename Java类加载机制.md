@@ -23,7 +23,7 @@
 ### 打印出类加载器
 
 ```
-  public static void main(String[] args) {
+	public static void main(String[] args) {
 		String s = new String("123");
 		Class<?> c = s.getClass();
 		ClassLoader loader = c.getClassLoader();
@@ -44,6 +44,17 @@
 2. 通过Class.forName()方法动态加载
 3. 通过ClassLoader.loadClass()方法动态加载
 
-
+```
+	public static void main(String[] args) throws ClassNotFoundException {
+		ClassLoader loader = ClassLoader.getSystemClassLoader();
+		System.out.println(loader);
+		// 使用ClassLoader.loadClass()来加载类，不会执行初始化块
+		loader.loadClass("com.Hello");
+		// 使用Class.forName()来加载类，默认会执行初始化块
+		Class.forName("com.Hello");
+		// 使用Class.forName()来加载类，并指定ClassLoader初始化时不执行静态块
+		Class.forName("com.Hello", false, loader);
+	}
+```
 
 
