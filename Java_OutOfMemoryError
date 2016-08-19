@@ -1,1 +1,8 @@
 
+第一种OutOfMemoryError: PermGen space
+JAVA_OPTS = -XX:PermSize=64M -XX:MaxPermSize=128m
+
+第二种OutOfMemoryError: Java heap space
+JAVA_OPTS = -Xms256m -Xmx1024m
+
+第三种OutOfMemoryError: unable to create new native thread
