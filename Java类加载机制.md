@@ -19,3 +19,31 @@
 2. 运行一个程序时，总是由系统类加载器(AppClass Loader)开始加载；
 3. 在加载类时，每个类加载器会将加载任务上交给父类加载器，如果父类找不到，再自己去加载；
 4. 启动类加载器(Bootstrap Loader)是最顶级的类加载器，其父加载器为null。
+
+### 打印出类加载器
+
+```
+  public static void main(String[] args) {
+		String s = new String("123");
+		Class<?> c = s.getClass();
+		ClassLoader loader = c.getClassLoader();
+		outputClassLoader(loader);
+	}
+	
+	public static void outputClassLoader(ClassLoader loader) {
+		System.out.println(loader);
+		if (loader != null) {
+			outputClassLoader(loader.getParent());
+		}
+	}
+```
+
+### 类加载的三种方式
+
+1. 命令行启动应用时候由JVM初始化加载
+2. 通过Class.forName()方法动态加载
+3. 通过ClassLoader.loadClass()方法动态加载
+
+
+
+
