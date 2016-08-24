@@ -1,9 +1,11 @@
 ### Java内存溢出
 
 第一种OutOfMemoryError: PermGen space
+
 JAVA_OPTS = -XX:PermSize=64M -XX:MaxPermSize=128m
 
 第二种OutOfMemoryError: Java heap space
+
 JAVA_OPTS = -Xms256m -Xmx1024m
 
 第三种OutOfMemoryError: unable to create new native thread
@@ -18,6 +20,7 @@ JAVA_OPTS = -Xms256m -Xmx1024m
 -Xss 单个线程堆栈大小值；JDK5.0 以后每个线程堆栈大小为1M，以前每个线程堆栈大小为256K。在相同物理内存下，减小这个值能生成更多的线程。但是操作系统对一个进程内的线程数还是有限制的，不能无限生成，经验值在3000~5000左右。
 
 -XX:
+
  +UseParNewGC 可用来设置年轻代为并发收集【多CPU】，如果你的服务器有多个CPU，你可以开启此参数；开启此参数，多个CPU 可并发进行垃圾回收，可提高垃圾回收的速度。此参数和+UseParallelGC，-XX:ParallelGCThreads搭配使用。
  +UseParallelGC 选择垃圾收集器为并行收集器。此配置仅对年轻代有效。即上述配置下，年轻代使用并发收集，而年老代仍旧使用串行收集。可提高系统的吞吐量。
 
