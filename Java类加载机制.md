@@ -22,7 +22,7 @@
 
 ### 打印出类加载器
 
-```
+``` java
 	public static void main(String[] args) {
 		String s = new String("123");
 		Class<?> c = s.getClass();
@@ -44,7 +44,7 @@
 2. 通过Class.forName()方法动态加载
 3. 通过ClassLoader.loadClass()方法动态加载
 
-```
+``` java
 	public static void main(String[] args) throws ClassNotFoundException {
 		ClassLoader loader = ClassLoader.getSystemClassLoader();
 		System.out.println(loader);
