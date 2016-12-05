@@ -23,26 +23,38 @@
 ### 打印出类加载器
 
 ``` java
-	public static void main(String[] args) {
-		String s = new String("123");
-		Class<?> c = s.getClass();
-		ClassLoader loader = c.getClassLoader();
-		outputClassLoader(loader);
-	}
-	
-	public static void outputClassLoader(ClassLoader loader) {
-		System.out.println(loader);
-		if (loader != null) {
-			outputClassLoader(loader.getParent());
-		}
-	}
+    public static void main(String[] args) {
+        String o = new String();
+        URLClassLoader loader = (URLClassLoader) o.getClass().getClassLoader();
+        outputClassLoader(loader);
+    }
+
+    public static void outputClassLoader(URLClassLoader loader) {
+        if (loader != null) {
+            System.out.println(loader);
+            URL[] urls = loader.getURLs();
+            for (URL url : urls) {
+                System.out.println(url);
+            }
+            System.out.println();
+
+            outputClassLoader((URLClassLoader) loader.getParent());
+        } else {
+            System.out.println("BootstrapClassLoader: ");
+            @SuppressWarnings("restriction")
+            URL[] urls = sun.misc.Launcher.getBootstrapClassPath().getURLs();
+            for (URL url : urls) {
+                System.out.println(url);
+            }
+        }
+    }
 ```
 
 ### 类加载的三种方式
 
 1. 命令行启动应用时候由JVM初始化加载
-2. 通过Class.forName()方法动态加载
-3. 通过ClassLoader.loadClass()方法动态加载
+2. 通过Class.forName()静态方法动态加载
+3. 通过ClassLoader.loadClass()实例方法动态加载
 
 ``` java
 	public static void main(String[] args) throws ClassNotFoundException {
