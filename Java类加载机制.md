@@ -13,7 +13,7 @@
 1. 启动类加载器加载java核心类库
 2. ...
 
-### 类加载器的特定
+### 类加载器的特征
 
 1. 双亲委派加载机制；
 2. 运行一个程序时，总是由系统类加载器(AppClass Loader)开始加载；
@@ -57,4 +57,42 @@
 	}
 ```
 
+### 获取类文件所在位置的绝对路径
 
+``` java
+public class JWhich {
+
+    /**
+     * 根据当前的classpath设置，显示包含
+     * 指定类的类文件所在位置的绝对路径
+     * 
+     * @param className <类的名字>
+     */
+    public static void which(String className) {
+
+        if (!className.startsWith("/")) {
+            className = "/" + className;
+        }
+        className = className.replace('.', '/');
+        className = className + ".class";
+
+        java.net.URL classUrl = JWhich.class.getResource(className);
+        if (classUrl != null) {
+            // 指定类的类文件所在位置的绝对路径
+            System.out.println(classUrl.getFile());
+        } else {
+            // 没有找到指定类的类路径
+            System.out.println("not found in '"
+                + System.getProperty("java.class.path") + "'");
+        }
+    }
+
+    public static void main(String args[]) {
+        if (args.length > 0) {
+            JWhich.which(args[0]);
+        } else {
+            System.err.println("Usage: java JWhich ");
+        }
+    }
+}
+```
