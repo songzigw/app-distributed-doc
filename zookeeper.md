@@ -37,8 +37,8 @@ syncLimit=5
 # the directory where the snapshot is stored.
 # do not use /tmp for storage, /tmp here is just 
 # example sakes.
-dataDir=/home/zhangsong/zookeeper-3.4.6/data
-dataLogDir=/home/zhangsong/zookeeper-3.4.6/logs
+dataDir=/home/zhangsong/app/zookeeper-3.4.6/data
+dataLogDir=/home/zhangsong/app/zookeeper-3.4.6/logs
 # the port at which the clients will connect
 clientPort=2181
 # 2888,3888 are election port
@@ -81,7 +81,7 @@ $ vi myid
 
 ```
 # zookeeper env
-export ZOOKEEPER_HOME=/home/zhangsong/zookeeper-3.4.6
+export ZOOKEEPER_HOME=/home/zhangsong/app/zookeeper-3.4.6
 export PATH=$ZOOKEEPER_HOME/bin:$PATH
 ```
 使配置文件生效
@@ -112,4 +112,4 @@ $ zkServer.sh stop
 12. 配置开机启动zookeeper
 
 编辑/etc/rc.local 文件,加入:
-su - zhangsong -c 'zookeeper-3.4.6/bin/zkServer.sh start'
+su - zhangsong -c '/home/zhangsong/app/zookeeper-3.4.6/bin/zkServer.sh start'
