@@ -19,7 +19,51 @@ $ mkdir logs
 
 5. 将 zookeeper-3.4.6/conf 目录下的 zoo_sample.cfg 文件拷贝，并命名为zoo.cfg
 
-`cp zoo_sample.cfg zoo.cfg`
+`$ cp zoo_sample.cfg zoo.cfg`
 
 6. 修改 zoo.cfg 配置文件
 
+`$ vim zoo.cfg`
+
+```
+# The number of milliseconds of each tick
+tickTime=2000
+# The number of ticks that the initial 
+# synchronization phase can take
+initLimit=10
+# The number of ticks that can pass between 
+# sending a request and getting an acknowledgement
+syncLimit=5
+# the directory where the snapshot is stored.
+# do not use /tmp for storage, /tmp here is just 
+# example sakes.
+dataDir=/home/zhangsong/zookeeper-3.4.6/data
+dataLogDir=/home/zhangsong/zookeeper-3.4.6/logs
+# the port at which the clients will connect
+clientPort=2181
+# 2888,3888 are election port
+server.1=localhost:2888:3888
+# the maximum number of client connections.
+# increase this if you need to handle more clients
+#maxClientCnxns=60
+#
+# Be sure to read the maintenance section of the 
+# administrator guide before turning on autopurge.
+#
+# http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_maintenance
+#
+# The number of snapshots to retain in dataDir
+#autopurge.snapRetainCount=3
+# Purge task interval in hours
+# Set to "0" to disable auto purge feature
+```
+
+2888 端口号是 zookeeper 服务之间通信的端口。
+
+3888 是 zookeeper 与其他应用程序通信的端口。
+
+initLimit:这个配置项是用来配置 Zookeeper 接受客户端(这里所说的客户端不是用户连接 Zookeeper 服务器的客户端,而是 Zookeeper 服务器集群中连接到 Leader 的 Follower 服务器)初始化连接时最长能忍受多少个心跳时间间隔数。 当已经超过 10 个心跳的时间(也就是 tickTime)长度后 Zookeeper 服务器还没 有收到客户端的返回信息,那么表明这个客户端连接失败。总的时间长度就是 10*2000=20 秒。
+
+syncLimit:这个配置项标识 Leader 与 Follower 之间发送消息,请求和应答时间长度,最长不能超过多少个 tickTime 的时间长度,总的时间长度就是 5*2000=10 秒。
+
+server.A=B:C:D:其中 A 是一个数字,表示这个是第几号服务器;B 是这个服务器的 IP 地址或/etc/hosts 文件中映射了 IP 的主机名;C 表示的是这个服务器与集群中的 Leader 服务器交换信息的端口;D 表示的是万一集群中的 Leader 服务器挂了,需要一个端口来重新进行选举,选出一个新的 Leader,而这个端口就是用来执行选举时服务器相互通信的端口。如果是伪集群的配置方式,由于 B 都是一样,所以不同的 Zookeeper 实例通信端口号不能一样,所以要给它们分配不同的端口号。
