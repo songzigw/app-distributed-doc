@@ -67,3 +67,49 @@ initLimit:这个配置项是用来配置 Zookeeper 接受客户端(这里所说�
 syncLimit:这个配置项标识 Leader 与 Follower 之间发送消息,请求和应答时间长度,最长不能超过多少个 tickTime 的时间长度,总的时间长度就是 5*2000=10 秒。
 
 server.A=B:C:D:其中 A 是一个数字,表示这个是第几号服务器;B 是这个服务器的 IP 地址或/etc/hosts 文件中映射了 IP 的主机名;C 表示的是这个服务器与集群中的 Leader 服务器交换信息的端口;D 表示的是万一集群中的 Leader 服务器挂了,需要一个端口来重新进行选举,选出一个新的 Leader,而这个端口就是用来执行选举时服务器相互通信的端口。如果是伪集群的配置方式,由于 B 都是一样,所以不同的 Zookeeper 实例通信端口号不能一样,所以要给它们分配不同的端口号。
+
+7. 在 zookeeper-3.4.6/data 下创建 myid 文件
+
+编辑 myid 文件,在对应的 IP 的机器上输入对应的编号。如在当前服务 myid 文件内容就是1。如果只在单点上进行安装配置，那么只有一个 server.1。
+
+```
+$ vi myid
+1
+```
+
+8. 修改 /home/zhangsong/.bash_profile，增加配置:
+
+```
+# zookeeper env
+export ZOOKEEPER_HOME=/home/zhangsong/zookeeper-3.4.6
+export PATH=$ZOOKEEPER_HOME/bin:$PATH
+```
+使配置文件生效
+```
+$ source /home/zhangsong/.bash_profile
+```
+
+9. 在防火墙中打开要用到的端口 2181、2888、3888
+
+10. 启动并测试 zookeeper
+
+启动服务
+$ zkServer.sh start
+
+查看进程
+$ jps
+
+查看状态:
+$ zkServer.sh status
+
+查看服务输出信息
+$ tail -500f zookeeper-3.4.6/bin/zookeeper.out
+
+11. 停止 zookeeper 进程
+
+$ zkServer.sh stop
+
+12. 配置开机启动zookeeper
+
+编辑/etc/rc.local 文件,加入:
+su - zhangsong -c 'zookeeper-3.4.6/bin/zkServer.sh start'
