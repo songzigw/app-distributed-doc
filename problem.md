@@ -11,10 +11,8 @@
 
 ## 3. Question: 如何修改机器的名称
 
-`
+```
 $ sudo vi /etc/hostname
-
 $ sudo /etc/init.d/hostname.sh start
-
 $ sudo reboot
-`
+```
