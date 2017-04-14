@@ -11,14 +11,10 @@
 
 ## 3. Question: 如何修改机器的名称
 
-方法一：
-`
-$ sudo hostname [新的计算机名]
-$ sudo reboot
-`
-
-方法二：
 `
 $ sudo vi /etc/hostname
+
+$ sudo /etc/init.d/hostname.sh start
+
+$ sudo reboot
 `
-将文件内容改为新的计算机名即可，重启。
