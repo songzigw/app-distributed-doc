@@ -1,5 +1,5 @@
 
-### 1. question, ssh: connect to host 192.168.188.177 port 22: Connection refused
+### 1. Question: ssh: connect to host 192.168.188.177 port 22: Connection refused
 
 出现这个问题的原因是ssh-server服务器没有安装或启动，我的操作系统ubuntu-16.04-desktop-amd64.iso，运行 `ps -e|grep ssh` 查看是否有sshd进程；
 
