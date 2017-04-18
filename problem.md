@@ -33,7 +33,7 @@ $ sudo reboot
 
 类图如下：
 
-![iterator](https://github.com/songzigw/app-distributed-doc)
+![iterator](https://github.com/songzigw/app-distributed-doc/blob/master/imgs/iterator.png)
 
 ``` java
 public interface Aggregate {
