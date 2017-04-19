@@ -10,12 +10,12 @@
 
 3. 将解压后的文件zookeeper-3.4.6移动到你规划的目录下，我规划的目录/home/zhangsong/app/
 
-`
+```
 $ mv zookeeper-3.4.6 /home/zhangsong/app/
 $ cd /home/zhangsong/app/zookeeper-3.4.6/
 $ mkdir data
 $ mkdir logs
-`
+```
 
 5. 将 zookeeper-3.4.6/conf 目录下的 zoo_sample.cfg 文件拷贝，并命名为zoo.cfg
 
@@ -94,22 +94,21 @@ $ source /home/zhangsong/.bash_profile
 10. 启动并测试 zookeeper
 
 启动服务
-$ zkServer.sh start
+`$ zkServer.sh start`
 
 查看进程
-$ jps
+`$ jps`
 
-查看状态:
-$ zkServer.sh status
+查看状态
+`$ zkServer.sh status`
 
 查看服务输出信息
-$ tail -500f zookeeper-3.4.6/bin/zookeeper.out
+`$ tail -500f zookeeper-3.4.6/bin/zookeeper.out`
 
 11. 停止 zookeeper 进程
 
-$ zkServer.sh stop
+`$ zkServer.sh stop`
 
 12. 配置开机启动zookeeper
 
-编辑/etc/rc.local 文件,加入:
-su - zhangsong -c '/home/zhangsong/app/zookeeper-3.4.6/bin/zkServer.sh start'
+编辑/etc/rc.local 文件,加入: `su - zhangsong -c '/home/zhangsong/app/zookeeper-3.4.6/bin/zkServer.sh start'`
