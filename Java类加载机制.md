@@ -10,8 +10,9 @@
 
 ### 不同级别的加载器加载不同的类
 
-1. 启动类加载器加载java核心类库
-2. ...
+1. 启动类加载器加载java核心类库，-Xbootclasspath指定的jar包加载到内存，默认指向<JAVA_RUNTIME_HOME>/lib下的jar包
+2. 扩展类加载器加载java扩展类库，-Djava.ext.dirs指定目录中的类库加载到内存，默认指向<JAVA_RUNTIME_HOME>/lib/ext下的jar包
+3. 系统类加载器加载-classpath(-Djava.class.path)指定目录下的类库到内存，其由用户给定
 
 ### 类加载器的特征
 
